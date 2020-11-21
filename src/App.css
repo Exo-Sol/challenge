@@ -20,18 +20,18 @@ body {
 }
 
 h1 {
-  position: absolute;
-  top: 30%;
-  left: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
   font-family: "alarm-clock";
   font-size: 50px;
   font-weight: 200;
 }
 
 #play {
-  position: absolute;
-  top: 60%;
-  left: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
   font-size: 50px;
   color: rgb(34, 116, 14);
   cursor: pointer;
