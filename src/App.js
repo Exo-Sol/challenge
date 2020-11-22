@@ -8,19 +8,19 @@ function App() {
   const [intervalId, setIntervalId] = useState(null);
   const [timeStamp, setTimeStamp] = useState([]);
 
-  // COUNTER
+  // COUNTER /////////////////////////////////////
   useEffect(() => {
     if (play) {
       const id = window.setInterval(() => {
         setSeconds((sec) => sec + 1);
-      }, 100);
+      }, 10);
       setIntervalId(id);
     } else {
       window.clearInterval(intervalId);
     }
   }, [play]);
 
-  /// SEC CONVERTER
+  /// SEC CONVERTER ////////////////////////////////
 
   const secConverter = (sec) => {
     let sekunde, minute, sati;
@@ -30,23 +30,44 @@ function App() {
       sati = Math.floor(sec / 3600);
       minute = Math.floor(sec / 60) - sati * 60;
 
-      return `${sati} : ${minute} : ${sekunde}`;
+      return `${sati}:${minute}:${sekunde}`;
     } else if (sec >= 60) {
       sekunde = sec % 60;
       minute = Math.floor(sec / 60);
 
-      return `${minute} : ${sekunde}`;
+      return `${minute}:${sekunde}`;
     } else {
-      return ` ${sec}`;
+      return `${sec}`;
     }
   };
 
-  /// GRABBING SAVED TIME
+  /// GRABBING SAVED TIME ///////////////////////
   const timeGrabber = (sec) => {
     let x = secConverter(sec);
     setTimeStamp((arr) => [...arr, x]);
     console.log(timeStamp);
   };
+
+  // SAVIN SELECTED TIME(timestamps) TO LOCAL STORAGE
+  const saveToLocal = (e) => {
+    let time = e.target.innerText;
+    let timeS = time.split(":");
+    console.log(timeS);
+    if (timeS.length > 2) {
+      let sec =
+        parseInt(timeS[0]) * 3600 +
+        parseInt(timeS[1]) * 60 +
+        parseInt(timeS[2]);
+      console.log(sec);
+    } else if (timeS.length > 1) {
+      let sec = parseInt(timeS[0]) * 60 + parseInt(timeS[1]);
+      console.log(sec);
+    } else {
+      console.log(timeS);
+    }
+  };
+
+  /////////////////////////////////////////////////////
 
   return (
     <div className="App">
@@ -72,10 +93,22 @@ function App() {
           {!play ? "play_arrow" : "stop"}
         </span>
         <SaveComp sec={seconds} passFunc={timeGrabber} />
+        <span
+          id="delete"
+          className="material-icons"
+          onClick={() => {
+            setSeconds(0);
+            setTimeStamp([]);
+          }}
+        >
+          remove_circle
+        </span>
       </div>
       <div className="timeStamps">
-        {timeStamp.map((time) => (
-          <h3>{time}</h3>
+        {timeStamp.map((time, index) => (
+          <h3 id={index} onClick={saveToLocal}>
+            {time}
+          </h3>
         ))}
       </div>
     </div>
