@@ -13,7 +13,7 @@ function App() {
     if (play) {
       const id = window.setInterval(() => {
         setSeconds((sec) => sec + 1);
-      }, 10);
+      }, 1000);
       setIntervalId(id);
     } else {
       window.clearInterval(intervalId);
@@ -50,6 +50,7 @@ function App() {
 
   // SAVIN SELECTED TIME(timestamps) TO LOCAL STORAGE
   const saveToLocal = (e) => {
+    //Unpacking
     let time = e.target.innerText;
     let timeS = time.split(":");
     console.log(timeS);
@@ -99,9 +100,13 @@ function App() {
           onClick={() => {
             setSeconds(0);
             setTimeStamp([]);
+            setPlay(false);
           }}
         >
           remove_circle
+        </span>
+        <span className="material-icons" id="folder">
+          folder
         </span>
       </div>
       <div className="timeStamps">
