@@ -1,9 +1,9 @@
 import "./App.css";
+import SaveComp from "./SaveComp.js";
 import React, { useState, useEffect } from "react";
 
 function App() {
   const [seconds, setSeconds] = useState(0);
-
   const [play, setPlay] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
 
@@ -11,7 +11,7 @@ function App() {
     if (play) {
       const id = window.setInterval(() => {
         setSeconds((sec) => sec + 1);
-      }, 1000);
+      }, 100);
       setIntervalId(id);
     } else {
       window.clearInterval(intervalId);
@@ -40,23 +40,28 @@ function App() {
   return (
     <div className="App">
       <h1>{secConverter(seconds)}</h1>
-
-      <span
-        className="material-icons"
-        id="play"
-        onClick={() => {
-          play === true ? setPlay(false) : setPlay(true);
-          console.log(play);
-          console.log("clicked");
-        }}
-        style={
-          !play
-            ? { color: "green", boxShadow: "0px 0px 50px 2px rgb(34, 116, 14)" }
-            : { color: "red", boxShadow: "0px 0px 50px 2px red" }
-        }
-      >
-        {!play ? "play_circle_outline" : "stop"}
-      </span>
+      <div className="buttons">
+        <span
+          className="material-icons"
+          id="play"
+          onClick={() => {
+            play === true ? setPlay(false) : setPlay(true);
+            console.log(play);
+            console.log("clicked");
+          }}
+          style={
+            !play
+              ? {
+                  color: "rgb(44, 233, 76)",
+                  boxShadow: "0px 0px 30px 2px rgb(44, 233, 76)",
+                }
+              : { color: "red", boxShadow: "0px 0px 30px 2px red" }
+          }
+        >
+          {!play ? "play_arrow" : "stop"}
+        </span>
+        <SaveComp />
+      </div>
     </div>
   );
 }

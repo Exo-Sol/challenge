@@ -17,24 +17,51 @@ body {
   justify-content: center;
   background-color: black;
   color: aliceblue;
+  height: 100vh;
+  margin: auto;
 }
 
 h1 {
   display: flex;
   justify-content: center;
-  margin-top: 30vh;
+  margin-top: 20vh;
   font-family: "alarm-clock";
-  font-size: 50px;
+  font-size: 60px;
   font-weight: 200;
+  width: 350px;
+
+  padding-top: 25px;
+  padding-bottom: 10px;
+  border-radius: 50px;
+}
+
+.buttons {
+  display: grid;
+
+  grid-template-columns: 2fr 2fr;
+  gap: 13%;
 }
 
 #play {
-  display: flex;
-  justify-content: center;
-  margin-top: 20vh;
+  margin-top: 30vh;
   font-size: 50px;
-  color: rgb(34, 116, 14);
+  color: rgb(44, 233, 76);
   cursor: pointer;
-  box-shadow: 0px 0px 50px 2px rgb(34, 116, 14);
+  box-shadow: 0px 0px 30px 2px rgb(44, 233, 76);
   border-radius: 30px;
+  opacity: 0.8;
+  width: 150px;
+  text-align: center;
+}
+
+#save {
+  margin-top: 30vh;
+  font-size: 50px;
+  color: rgb(7, 66, 175);
+  cursor: pointer;
+  box-shadow: 0px 5px 30px 2px rgb(7, 66, 175);
+  border-radius: 30px;
+
+  width: 150px;
+  text-align: center;
 }
