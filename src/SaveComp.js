@@ -1,10 +1,14 @@
 import React from "react";
 import "./App.css";
 
-const SaveComp = () => {
+const SaveComp = ({ sec, passFunc }) => {
+  const clickSave = () => {
+    passFunc(sec);
+  };
+
   return (
     <div>
-      <span id="save" className="material-icons">
+      <span id="save" className="material-icons" onClick={clickSave}>
         note_add
       </span>
     </div>

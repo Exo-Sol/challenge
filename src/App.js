@@ -6,7 +6,9 @@ function App() {
   const [seconds, setSeconds] = useState(0);
   const [play, setPlay] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
+  const [timeStamp, setTimeStamp] = useState([]);
 
+  // COUNTER
   useEffect(() => {
     if (play) {
       const id = window.setInterval(() => {
@@ -17,6 +19,8 @@ function App() {
       window.clearInterval(intervalId);
     }
   }, [play]);
+
+  /// SEC CONVERTER
 
   const secConverter = (sec) => {
     let sekunde, minute, sati;
@@ -35,6 +39,13 @@ function App() {
     } else {
       return ` ${sec}`;
     }
+  };
+
+  /// GRABBING SAVED TIME
+  const timeGrabber = (sec) => {
+    let x = secConverter(sec);
+    setTimeStamp((arr) => [...arr, x]);
+    console.log(timeStamp);
   };
 
   return (
@@ -60,7 +71,12 @@ function App() {
         >
           {!play ? "play_arrow" : "stop"}
         </span>
-        <SaveComp />
+        <SaveComp sec={seconds} passFunc={timeGrabber} />
+      </div>
+      <div className="timeStamps">
+        {timeStamp.map((time) => (
+          <h3>{time}</h3>
+        ))}
       </div>
     </div>
   );

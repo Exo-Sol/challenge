@@ -65,3 +65,24 @@ h1 {
   width: 150px;
   text-align: center;
 }
+
+.timeStamps {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 7px;
+  text-align: center;
+  margin: auto;
+  margin-top: 10vh;
+  padding: 5px;
+  width: 300px;
+}
+
+h3 {
+  border-radius: 30px;
+  background-color: rgba(42, 227, 240, 0.2);
+  font-size: 22px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 300;
+  padding: 5px;
+}
