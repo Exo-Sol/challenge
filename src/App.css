@@ -5,6 +5,7 @@
   font-weight: normal;
   font-style: normal;
 }
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap");
 
 * {
   box-sizing: border-box;
@@ -84,12 +85,14 @@ h1 {
 }
 
 h3 {
-  border-radius: 30px;
+  border-radius: 22px;
   background-color: rgba(42, 227, 240, 0.2);
-  font-size: 22px;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 300;
+  font-size: 25px;
+  font-family: "Mukta", sans-serif;
+  font-weight: 500;
   padding: 5px;
+  color: aliceblue;
+  cursor: pointer;
 }
 
 .timeStamps > :last-child {
@@ -119,4 +122,24 @@ h3 {
   text-align: center;
   opacity: 0.9;
   border: solid 0.5px rgb(44, 43, 43);
+}
+
+h2 {
+  font-family: "Mukta", sans-serif;
+  font-size: 45px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+
+  color: rgba(121, 45, 209, 0.7);
+}
+
+#total {
+  margin-top: 20vh;
+  margin-bottom: 30vh;
+  font-family: "alarm-clock";
+  font-size: 50px;
+  font-weight: 200;
+  text-align: center;
 }
