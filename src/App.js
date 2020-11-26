@@ -8,7 +8,6 @@ function App() {
   const [play, setPlay] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
   const [timeStamp, setTimeStamp] = useState([]);
-  const [totTime, setTotTime] = useState(0);
 
   // COUNTER /////////////////////////////////////
   useEffect(() => {
@@ -72,22 +71,44 @@ function App() {
 
   // SAVIN SELECTED TIME(timestamps) TO LOCAL STORAGE
   const saveToLocal = (e) => {
-    let timeStampInSeconds = unPack(e);
-    console.log(timeStampInSeconds);
-    // initial setup
-    if (localStorage.getItem("totalTime") === null) {
-      localStorage.setItem("totalTime", String(timeStampInSeconds));
+    if (window.confirm(`Add timestamp ${e.target.innerText} to database?`)) {
+      let timeStampInSeconds = unPack(e);
+      console.log(timeStampInSeconds);
+      // initial setup
+      if (localStorage.getItem("totalTime") === null) {
+        localStorage.setItem("totalTime", String(timeStampInSeconds));
+      } else {
+        let time = parseInt(localStorage.getItem("totalTime"));
+        time += timeStampInSeconds;
+        localStorage.setItem("totalTime", String(time));
+      }
+      // Save it!
+      window.alert("Timestamp added.");
     } else {
-      let time = parseInt(localStorage.getItem("totalTime"));
-      time += timeStampInSeconds;
-      localStorage.setItem("totalTime", String(time));
+      // Do nothing!
+      window.alert("Timestamp dissmised");
     }
   };
 
   //RETRIVE FROM LOCAL AND RENDER IN Format hours
   const totalAndRender = () => {
     let time = parseInt(localStorage.getItem("totalTime"));
-    return secConverter(time);
+    if (!time) {
+      return 0;
+    } else {
+      return secConverter(time);
+    }
+  };
+
+  //Clear Total Time
+  const clearTotTime = () => {
+    if (
+      window.confirm(
+        "WARNING!!! You will delete ALL time saved in database. Proceed?"
+      )
+    ) {
+      localStorage.clear();
+    }
   };
 
   /////////////////////////////////////////////////////
@@ -161,11 +182,18 @@ function App() {
                   <span
                     id="folder"
                     className="material-icons"
-                    style={{ marginLeft: "25px" }}
+                    style={{ marginLeft: "25px", marginBottom: "100px" }}
                   >
                     arrow_back
                   </span>
                 </Link>
+                <span
+                  id="clearTotTime"
+                  className="material-icons"
+                  onClick={clearTotTime}
+                >
+                  auto_delete
+                </span>
               </Fragment>
             )}
           />
